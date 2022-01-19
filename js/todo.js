@@ -13,8 +13,10 @@ function saveToDos(){
 
 function deleteToDo(event){
     const li = event.target.parentElement;
-    console.log(li.id)
     li.remove();
+    console.log(li.id)
+    toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id))
+    saveToDos();
 }
 
 function paintToDo(newTodoObj){
@@ -47,9 +49,6 @@ function handleToDoSubmit(event) {
 
 toDoForm.addEventListener("submit", handleToDoSubmit)
 
-function sayHello(item){
-    console.log("hello", item);
-}
 
 const savedToDos = localStorage.getItem(TODOS_KEY)
 if(savedToDos){

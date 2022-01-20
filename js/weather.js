@@ -1,5 +1,8 @@
 const API_KEY = "1f3d3816aefa1afe2433af17116646da"
 function onGeoOk(position){
+
+
+    
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
     console.log("You live it", lat , lon);
@@ -8,14 +11,16 @@ function onGeoOk(position){
     fetch(url)
         .then(response => response.json())
          .then(data => {
-             const weather = document.querySelector("#weather span:first-child")
-             const city = document.querySelector("#weather span:last-child")
-              city.innerText = data.name
-                weather.innerText =  `${data.weather[0].main} / ${data.main.temp}`;
+            const weather = document.querySelector("#weather span:first-child")
+            const city = document.querySelector("#weather span:last-child")
+            city.innerText = data.name
+            weather.innerText =  `${data.weather[0].main} / ${data.main.temp}`;
     });
 }
 
 function onGeoError(){
     alert("Can't find you. No weather for you.")
 }
+
+
 navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError)
